@@ -36,7 +36,7 @@ export const SubTitle = styled.Text`
     ${({theme}) => css`
         font-size: ${theme.FONT_SIZE.SM}px;
         color: ${theme.COLORS.GRAY_300};
-        font-family: ${theme.FONT_FAMILY.BOLD};
+        font-family: ${theme.FONT_FAMILY.REGULAR};
     `};    
 `;
 

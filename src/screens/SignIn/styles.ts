@@ -12,4 +12,5 @@ export const Text = styled.Text`
     text-align: center;
     margin-bottom: 24px;
     margin-top: 48px;
+    font-family: ${({theme}) =>  theme.FONT_FAMILY.REGULAR};
 `

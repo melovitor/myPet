@@ -34,7 +34,7 @@ export function Settings(){
             <CardSettings 
                 title="Senha" 
                 subTitle="Altere sua senha" 
-                icon={<Icon.Password weight="light"/>}
+                icon={<Icon.Lock weight="light"/>}
                 onPress={hendleChangePassword}/>
             <CardSettings 
                 title="Sair" 
