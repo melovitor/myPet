@@ -1,21 +1,29 @@
-import { CaretRight, Password } from "phosphor-react-native";
+import * as Icon from "phosphor-react-native";
 import { Wrapper,Container, Title, SubTitle} from "./styles";
 import { TouchableOpacityProps } from "react-native";
+import { IconProps } from "@phosphor-icons/react";
 
 type Props = TouchableOpacityProps &{
     title: string;
     subTitle: string;
+    icon: IconProps
+    
 }
-export function CardSettings({title, subTitle, ...rest }: Props){
+
+export function CardSettings({title, subTitle, icon,...rest }: Props, ){
     return (
         <Wrapper {...rest}>
-            <Password weight="light"/>
+            <>
+                {icon}
+            </>
             <Container>
                 <Title >{title}</Title>
                 <SubTitle >{subTitle}</SubTitle>
                 
             </Container>
-            <CaretRight weight="light" size={16}/>
+            <>
+                {<Icon.CaretRight weight="light" size={16}/>} 
+            </>
         </Wrapper>
         
     )

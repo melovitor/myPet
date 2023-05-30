@@ -9,6 +9,6 @@ export const Container = styled(SafeAreaView)`
 export const Text = styled.Text`
     color: ${({theme}) =>  theme.COLORS.GRAY_400};
     text-align: center;
-    margin-bottom: 24px;
-    margin-top: 48px;
+    margin: 32px;
+    font-size: ${({theme}) =>  theme.FONT_SIZE.MD}px;
 `
