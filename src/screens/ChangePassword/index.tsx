@@ -24,7 +24,17 @@ export function ChangePassword(){
         }
 
         auth().currentUser?.updatePassword(password)
-        navigation.goBack()     
+        Alert.alert('Trocar senha', 'Sua senha foi atualiza!', [
+            {
+                text: 'Ok',
+                onPress: () =>  navigation.goBack(),
+              },
+        ])
+          
+    }
+
+    function hendleGoBack(){
+        navigation.navigate('settings')
     }
 
 
@@ -35,6 +45,7 @@ export function ChangePassword(){
                 <Input placeholder="Nova senha" secureTextEntry onChangeText={setPassword}/>
                 <Input placeholder="Confirme nova senha" secureTextEntry onChangeText={setConfirmPassword}/>
                 <Button title="Trocar senha" type="PRIMARY" style={{marginTop: 16}} onPress={hendleChangePassword}/>
+                <Button title="Voltar" type="SECONDARY" style={{marginTop: 8}} onPress={hendleGoBack}/>
             </ScrollView>
         </Container>
         

@@ -33,7 +33,7 @@ export function SignUp(){
         }
 
         if(password.length < 6){
-            return Alert.alert('Trocar senha', 'A senha deve conter mais de 6 caracteres.')
+            return Alert.alert('Criar conta', 'A senha deve conter mais de 6 caracteres.')
         }
 
         if(password !== confirmPassword){
@@ -46,11 +46,15 @@ export function SignUp(){
         .catch(error => {
             if (error.code === 'auth/email-already-in-use') {
                 Alert.alert('Criar conta', 'Este endereço de E-mail já está cadastrado.')
-            }if(error.code === 'auth/invalid-email'){
-                return Alert.alert('Entrar', 'E-mail inválido.')
+            }
+            if(error.code === 'auth/invalid-email'){
+                return Alert.alert('Criar conta', 'E-mail inválido.')
+            }
+            if(error.code === 'auth/network-request-failed'){
+                return Alert.alert('Criar conta', 'Não foi possivel conectar ao servidor, verifique sua internet.')
             }
             console.log(error)
-            return Alert.alert('Entrar', 'Não foi possivel acessar.')
+            return Alert.alert('Criar conta', 'Não foi possivel acessar.')
         });
 
     }

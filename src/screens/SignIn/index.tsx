@@ -35,6 +35,9 @@ export function SignIn(){
             if(error.code === 'auth/invalid-email'){
                 return Alert.alert('Entrar', 'E-mail inválido.')
             }
+            if(error.code === 'auth/network-request-failed'){
+                return Alert.alert('Entrar', 'Não foi possivel conectar ao servidor, verifique sua internet.')
+            }
             console.log(error)
             return Alert.alert('Entrar', 'Não foi possivel acessar.')
         })        
