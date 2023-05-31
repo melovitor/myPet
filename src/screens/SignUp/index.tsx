@@ -13,14 +13,13 @@ export function SignUp(){
     const emailRef = useRef<TextInput | null>(null)
     const passwordRef = useRef<TextInput | null>(null)
     const confirmPasswordRef = useRef<TextInput | null>(null)
-
-
     
     const navigation = useNavigation()
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [confirmPassword, setConfirmPassword] = useState('')
+    const [isLoading, setIsLoading] = useState(Boolean)
 
 
     function hendleSignIn(){
@@ -40,9 +39,10 @@ export function SignUp(){
             return Alert.alert('Criar conta', 'As senhas devem ser iguais')
             
         }
-
+        setIsLoading(true)
         auth()
         .createUserWithEmailAndPassword(email, password)
+        .then(() => {setIsLoading(false)})
         .catch(error => {
             if (error.code === 'auth/email-already-in-use') {
                 Alert.alert('Criar conta', 'Este endereço de E-mail já está cadastrado.')
@@ -51,7 +51,7 @@ export function SignUp(){
                 return Alert.alert('Criar conta', 'E-mail inválido.')
             }
             if(error.code === 'auth/network-request-failed'){
-                return Alert.alert('Criar conta', 'Não foi possivel conectar ao servidor, verifique sua internet.')
+                return Alert.alert('Criar conta', 'Não foi possivel conectar ao servidor, verifique sua internet e tente novamente.')
             }
             console.log(error)
             return Alert.alert('Criar conta', 'Não foi possivel acessar.')
@@ -97,7 +97,7 @@ export function SignUp(){
                     autoCapitalize='none'
                     returnKeyType="done"
                 />
-                <Button title="Criar e acessar" type="PRIMARY" style={{marginTop: 16}} onPress={hendleCreateNewUser}/>
+                <Button title="Criar e acessar" type="PRIMARY" style={{marginTop: 16}} onPress={hendleCreateNewUser} loading={isLoading}/>
                 <Text>Já possui uma conta?</Text>
                 <Button title="Ir para login" type="SECONDARY" onPress={hendleSignIn} />
             </Container>

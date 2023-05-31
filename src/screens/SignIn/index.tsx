@@ -16,6 +16,7 @@ export function SignIn(){
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+    const [isLoading, setIsLoading] = useState(Boolean)
 
     
     function hendleSignUp(){
@@ -26,8 +27,10 @@ export function SignIn(){
         if(!email || !password){
            return Alert.alert('Entrar', 'Informe e-mail e senha.')
         }
+        setIsLoading(true)
         auth()
         .signInWithEmailAndPassword(email, password)
+        .then(() => {setIsLoading(false)})
         .catch((error) => {
             if(error.code ===  'auth/user-not-found' || error.code === 'auth/wrong-password'){
                 return Alert.alert('Entrar', 'E-mail ou senha inválida.')
@@ -37,6 +40,8 @@ export function SignIn(){
             }
             if(error.code === 'auth/network-request-failed'){
                 return Alert.alert('Entrar', 'Não foi possivel conectar ao servidor, verifique sua internet.')
+            }if(error.code === 'auth/network-request-failed'){
+                return Alert.alert('Entrar', 'Não foi possivel conectar ao servidor, verifique sua internet e tente novamente.')
             }
             console.log(error)
             return Alert.alert('Entrar', 'Não foi possivel acessar.')
@@ -65,7 +70,7 @@ export function SignIn(){
                     autoCapitalize='none'
                     inputRef={passwordRef}
                 />
-                <Button title="Entrar" type="PRIMARY" style={{marginTop: 16}} onPress={hendleSignIn} />
+                <Button title="Entrar" type="PRIMARY" style={{marginTop: 16}} onPress={hendleSignIn} loading={isLoading}/>
                 <Text>Ainda não tem acesso?</Text>
                 <Button title="Criar conta" type="SECONDARY" onPress={hendleSignUp}/>
             </Container>

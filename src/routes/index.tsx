@@ -6,7 +6,6 @@ import { useEffect, useState} from 'react'
 
 export function Routes(){
     const [user, setUser] = useState<FirebaseAuthTypes.User | null>()
-    console.log(user)
 
     useEffect(() => {
         const subscriber = auth()
